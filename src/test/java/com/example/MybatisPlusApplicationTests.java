@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
@@ -83,5 +86,23 @@ class MybatisPlusApplicationTests {
         userMapper.updateById(user2);
         //执行更新
         userMapper.updateById(user);  //如果没有乐观锁，这里会覆盖插队线程的值
+    }
+
+
+    //测试批量查询
+    @Test
+    public void testSelectById(){
+        List<User> users = userMapper.selectBatchIds(Arrays.asList(1,2,3));
+        users.forEach(System.out::println);
+    }
+
+    //条件查询map
+    @Test
+    public void testSelectByBatchIds(){
+        HashMap<String,Object> map = new HashMap<>();
+
+        map.put("name","wch");
+        List<User> users = userMapper.selectByMap(map);
+        users.forEach(System.out::println);
     }
 }
