@@ -116,7 +116,12 @@ class MybatisPlusApplicationTests {
         userMapper.selectPage(page,null);
 
         page.getRecords().forEach(System.out::println);
-
-
     }
+
+    //逻辑测试删除
+    @Test
+    public void testDeleteById(){
+        userMapper.deleteById(1L);
+    }
+
 }

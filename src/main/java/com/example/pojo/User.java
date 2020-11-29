@@ -18,6 +18,9 @@ public class User {
     @Version //乐观锁注解
     private Integer version;
 
+    @TableLogic //逻辑删除组件
+    private Integer deleted;
+
     //自动填充
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
