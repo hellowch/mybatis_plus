@@ -26,4 +26,29 @@ class MybatisPlusApplicationTests {
         List<User> users = userMapper.selectList(null);
         users.forEach(System.out::println);
     }
+
+    @Test
+    public void testInsert() {
+        //插入数据
+        User user = new User();
+        user.setName("wch2");
+        user.setAge(20);
+        user.setEmail("11111@qq.com");
+        int result = userMapper.insert(user);
+        System.out.println(result);
+        System.out.println(user);
+    }
+
+    @Test
+    public void testUpdate(){
+        //更新操作
+        User user = new User();
+        user.setId((long) 7);
+        user.setName("wch");
+        user.setAge(18);
+        user.setEmail("222222@qq.com");
+        int result = userMapper.updateById(user);
+        System.out.println(result);
+        System.out.println(user);
+    }
 }
