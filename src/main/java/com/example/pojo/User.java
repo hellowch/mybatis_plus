@@ -15,6 +15,9 @@ public class User {
     private Integer age;
     private String email;
 
+    @Version //乐观锁注解
+    private Integer version;
+
     //自动填充
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
