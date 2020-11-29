@@ -1,5 +1,6 @@
 package com.example;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mapper.UserMapper;
 import com.example.pojo.User;
 import org.assertj.core.api.Assert;
@@ -104,5 +105,18 @@ class MybatisPlusApplicationTests {
         map.put("name","wch");
         List<User> users = userMapper.selectByMap(map);
         users.forEach(System.out::println);
+    }
+
+    //测试分页查询
+    @Test
+    public void testPage(){
+        //参数一：当前页
+        //参数二：页面大小
+        Page<User> page = new Page<>(1,5);
+        userMapper.selectPage(page,null);
+
+        page.getRecords().forEach(System.out::println);
+
+
     }
 }
