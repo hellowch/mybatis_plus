@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @MapperScan("com.example.mapper")
@@ -33,5 +35,13 @@ public class MyBatisPlusConfig {
     public ISqlInjector sqlInjector(){
         return new LogicSqlInjector();
     }
+
+    //SQL性能分析插件，只在测试和开发环境生效
+    @Bean
+    @Profile({"dev","test"})
+    public PerformanceInterceptor performanceInterceptor(){
+        return new PerformanceInterceptor();
+    }
+
 
 }
